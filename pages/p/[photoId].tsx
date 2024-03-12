@@ -23,7 +23,7 @@ const Home: NextPage = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{title ? title : "Ai Generated Art By Noman Dhoni"}</title>
         <meta property="og:image" content={currentPhotoUrl} />
         <meta name="twitter:image" content={currentPhotoUrl} />
       </Head>
@@ -57,9 +57,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
   currentPhoto.blurDataUrl = await getBase64ImageUrl(currentPhoto);
 
-  // Fetch title from the endpoint
-  const currentUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
-  console.log(currentUrl);
   const response = await fetch(
     `https://replicate-api-beryl.vercel.app/api/generate?imageUrl=https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1280/${currentPhoto.public_id}.${currentPhoto.format}&apiToken=${process.env.REPLICATE_API_TOKEN}`
   );
