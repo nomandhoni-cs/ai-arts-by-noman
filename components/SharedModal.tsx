@@ -24,7 +24,6 @@ export default function SharedModal({
   navigation,
   currentPhoto,
   direction,
-  title,
 }: SharedModalProps) {
   const [loaded, setLoaded] = useState(false);
 
@@ -81,7 +80,7 @@ export default function SharedModal({
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
-                  alt={title}
+                  alt="Ai Generated Image By Noman Dhoni"
                   onLoad={() => setLoaded(true)}
                 />
               </motion.div>
