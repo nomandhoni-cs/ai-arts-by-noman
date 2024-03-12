@@ -8,9 +8,11 @@ import SharedModal from "./SharedModal";
 export default function Carousel({
   index,
   currentPhoto,
+  title,
 }: {
   index: number;
   currentPhoto: ImageProps;
+  title: string;
 }) {
   const router = useRouter();
   const [, setLastViewedPhoto] = useLastViewedPhoto();
@@ -37,7 +39,7 @@ export default function Carousel({
         <Image
           src={currentPhoto.blurDataUrl}
           className="pointer-events-none h-full w-full"
-          alt="blurred background"
+          alt={title}
           fill
           priority={true}
         />
@@ -48,6 +50,7 @@ export default function Carousel({
         currentPhoto={currentPhoto}
         closeModal={closeModal}
         navigation={false}
+        title={title}
       />
     </div>
   );

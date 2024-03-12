@@ -1,3 +1,4 @@
+"use client";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -7,7 +8,13 @@ import cloudinary from "../../utils/cloudinary";
 import getBase64ImageUrl from "../../utils/generateBlurPlaceholder";
 import type { ImageProps } from "../../utils/types";
 
-const Home: NextPage = ({ currentPhoto }: { currentPhoto: ImageProps }) => {
+const Home: NextPage = ({
+  currentPhoto,
+  title,
+}: {
+  currentPhoto: ImageProps;
+  title: string;
+}) => {
   const router = useRouter();
   const { photoId } = router.query;
   let index = Number(photoId);
@@ -17,12 +24,12 @@ const Home: NextPage = ({ currentPhoto }: { currentPhoto: ImageProps }) => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>{title}</title>
         <meta property="og:image" content={currentPhotoUrl} />
         <meta name="twitter:image" content={currentPhotoUrl} />
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
-        <Carousel currentPhoto={currentPhoto} index={index} />
+        <Carousel currentPhoto={currentPhoto} title={title} index={index} />
       </main>
     </>
   );
@@ -47,13 +54,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   const currentPhoto = reducedResults.find(
-    (img) => img.id === Number(context.params.photoId),
+    (img) => img.id === Number(context.params.photoId)
   );
   currentPhoto.blurDataUrl = await getBase64ImageUrl(currentPhoto);
+
+  // Fetch title from the endpoint
+  const currentUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
+  const response = await fetch(
+    `https://replicate-api-beryl.vercel.app/api/generate?imageUrl=${currentUrl}&apiToken=${process.env.REPLICATE_API_TOKEN}`
+  );
+  const data = await response.json();
+  console.log(data);
 
   return {
     props: {
       currentPhoto: currentPhoto,
+      title: data.caption, // pass the title as a prop
     },
   };
 };
