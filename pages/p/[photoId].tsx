@@ -59,6 +59,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   // Fetch title from the endpoint
   const currentUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
+  console.log(currentUrl);
   const response = await fetch(
     `https://replicate-api-beryl.vercel.app/api/generate?imageUrl=${currentUrl}&apiToken=${process.env.REPLICATE_API_TOKEN}`
   );
