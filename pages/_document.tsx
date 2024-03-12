@@ -16,7 +16,7 @@ class MyDocument extends Document {
           />
           <meta
             property="og:description"
-            content="See pictures from Next.js Conf and the After Party."
+            content="These are the Ai Generated Arts by Noman Dhoni"
           />
           <meta
             property="og:title"
