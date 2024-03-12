@@ -24,11 +24,12 @@ export default function SharedModal({
   navigation,
   currentPhoto,
   direction,
+  title,
 }: SharedModalProps) {
   const [loaded, setLoaded] = useState(false);
 
   let filteredImages = images?.filter((img: ImageProps) =>
-    range(index - 15, index + 15).includes(img.id),
+    range(index - 15, index + 15).includes(img.id)
   );
 
   const handlers = useSwipeable({
@@ -80,7 +81,7 @@ export default function SharedModal({
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
-                  alt="Next.js Conf image"
+                  alt={title}
                   onLoad={() => setLoaded(true)}
                 />
               </motion.div>
@@ -141,7 +142,7 @@ export default function SharedModal({
                   onClick={() =>
                     downloadPhoto(
                       `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${currentImage.public_id}.${currentImage.format}`,
-                      `${index}.jpg`,
+                      `${index}.jpg`
                     )
                   }
                   className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
