@@ -50,7 +50,6 @@ export default function Carousel({
         currentPhoto={currentPhoto}
         closeModal={closeModal}
         navigation={false}
-        title={title}
       />
     </div>
   );

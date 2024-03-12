@@ -16,5 +16,4 @@ export interface SharedModalProps {
   closeModal: () => void;
   navigation: boolean;
   direction?: number;
-  title: string;
 }

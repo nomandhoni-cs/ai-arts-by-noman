@@ -24,7 +24,6 @@ export default function SharedModal({
   navigation,
   currentPhoto,
   direction,
-  title,
 }: SharedModalProps) {
   const [loaded, setLoaded] = useState(false);
 
@@ -81,7 +80,7 @@ export default function SharedModal({
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
-                  alt={title}
+                  alt="Ai Generated Image By Noman Dhoni"
                   onLoad={() => setLoaded(true)}
                 />
               </motion.div>
@@ -129,7 +128,7 @@ export default function SharedModal({
                   </a>
                 ) : (
                   <a
-                    href={`https://twitter.com/intent/tweet?text=Check%20out%20this%20pic%20from%20Next.js%20Conf!%0A%0Ahttps://nextjsconf-pics.vercel.app/p/${index}`}
+                    href={`https://twitter.com/intent/tweet?text=Checkout%20this%20cool%20art%20generated%20by%20Noman%20Dhoni%0A%0Ahttps://artsbynomandhoni.netlify.app/p/${index}`}
                     className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
                     target="_blank"
                     title="Open fullsize version"
