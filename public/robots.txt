@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://artsbynomandhoni.netlify.app
+
+# Sitemaps
+Sitemap: https://artsbynomandhoni.netlify.app/sitemap.xml
