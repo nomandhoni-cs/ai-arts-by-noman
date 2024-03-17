@@ -24,6 +24,11 @@ const Home: NextPage = ({
     <>
       <Head>
         <title>{title}</title>
+        <meta property="og:description" content={title} />
+        <meta property="og:title" content={title} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={title} />
         <meta property="og:image" content={currentPhotoUrl} />
         <meta name="twitter:image" content={currentPhotoUrl} />
       </Head>
